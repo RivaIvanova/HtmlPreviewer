@@ -54,7 +54,8 @@ Preview and Save HTML code with shareable URL
 <tbody>
 <table>
   
-<p>To access any of the already added example: /Home/HTML/{id} </p>
+<p>To access any of the already added examples: /Home/HTML/{id} </p>
+  <p>(Entity with <b>id 3</b> is interesting)</p>
 <br>
   
 <h3>💻 HOW TO RUN: </h3>
