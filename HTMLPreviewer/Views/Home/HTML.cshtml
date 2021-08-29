@@ -1,0 +1,161 @@
+﻿@{
+    this.ViewData["Title"] = "Preview";
+}
+
+@model HTMLPreviewer.Models.HTMLInputModel
+
+<section class="page-section" id="html">
+    <div class="container pt-5">
+        <div class="text-center mb-5">
+            <h2 class="text-uppercase text-white">Preview your HTML</h2>
+        </div>
+        <div class="col-12 bg-green-linear border-top-rounded">
+            <div class="html-buttons">
+                <button id="run" class="btn text-center">Run</button>
+                <select class="" id="versions">
+                    <option value="" selected disabled>Check Original</option>
+                </select>
+                <button id="save" class="btn text-center">Save</button>
+                <span id="result-span"></span>
+            </div>
+        </div>
+        <div class="row align-items-stretch mb-5">
+            <div class="col-md-6 pr-0">
+                <div class="form-group form-group-textarea">
+                    <textarea asp-for="Content" class="html-input" placeholder="Enter your HTML and click Run"></textarea>
+                </div>
+            </div>
+            <div class="col-md-6 pl-0">
+                <iframe sandbox="" srcdoc="" class="html-output" frameBorder="0">
+                </iframe>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Modal -->
+<div class="modal fade" id="originalModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content border-top-rounded">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Version Check</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn bg-grey-linear border-rounded" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $("button#save").on('click', SaveData);
+            $("select#versions").on('click', GetVersions);
+
+            setInterval(SaveData, 15000);
+
+            $("button#run").click(function () {
+                var input = $("textarea.html-input").val();
+                $("iframe.html-output").attr("srcdoc", input);
+            });
+
+            $('#versions').change(function () {
+                var versionId = $('#versions').children("option:selected").val();
+                IsOriginal(versionId);
+            });
+
+            function SaveData() {
+                var content = $("textarea.html-input").val();
+                var model = {
+                    Id: @Model.Id,
+                    Content: content
+                };
+
+                $.ajax({
+                    type: "PUT",
+                    url: "/api/Html",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(model),
+                    dataType: "text",
+                    success: function (msg) {
+                        $("span#result-span").text("Saved successfully!");
+                        $("span#result-span").addClass("text-success");
+                        $('span#result-span').css('text-shadow', '1px 1px 2px black, 0 0 25px black');
+
+                        setTimeout(function () {
+                            $("span#result-span").text("");
+                        }, 1000);
+                    },
+                    error: function (req, status, error) {
+                        console.log(error);
+                    }
+                });
+            };
+
+            var entityMap = {
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#39;',
+                '/': '&#x2F;',
+                '`': '&#x60;',
+                '=': '&#x3D;'
+            };
+
+            function escapeHtml(string) {
+                return String(string).replace(/[&<>"'`=\/]/g, function (s) {
+                    return entityMap[s];
+                });
+            }
+
+            function GetVersions() {
+                $.ajax({
+                    type: "GET",
+                    url: "/api/Html/" + @Model.Id,
+                    data: {},
+                    success: function (resp) {
+                        var s = '<option value="Check" selected disabled >Check Original </option>';
+                        for (var i = 0; i < resp.length; i++) {
+                            s += '<option value="' + resp[i].id + '">' + escapeHtml(resp[i].content) + '</option>';
+                        }
+                        $("#versions").html(s);
+                    }
+                });
+            };
+
+            function IsOriginal(version) {
+
+                var content = $("textarea.html-input").val();
+
+                var model = {
+                    content: content,
+                    version: parseInt(version)
+                };
+
+                $.ajax({
+                    type: "POST",
+                    url: "/api/Html/",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(model),
+                    dataType: "text",
+                    success: function (resp) {
+                        var s = '<p>' + resp + '</p>';
+
+                        $(".modal-body").html(s);
+                        $('#originalModal').modal('toggle');
+                    }
+                });
+            };
+
+        });
+    </script>
+}

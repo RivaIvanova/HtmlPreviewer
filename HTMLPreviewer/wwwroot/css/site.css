@@ -1,0 +1,196 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+a.navbar-brand {
+    white-space: normal;
+    text-align: center;
+    word-break: break-all;
+    color: #fff;
+}
+
+/* Provide sufficient contrast against white background */
+a {
+    color: #0366d6;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.border-top {
+    border-top: 1px solid #e5e5e5;
+}
+
+.border-bottom {
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+    font-size: 1rem;
+    line-height: inherit;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    line-height: 60px; /* Vertically center the text there */
+}
+
+/* CUSTOM */
+
+
+.page-section {
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(../html.jpg);
+    height: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    align-content: center;
+}
+
+.text-uppercase {
+    text-transform: capitalize; 
+}
+
+.text-white {
+    color: #fff;
+}
+
+.bg-green-linear {
+    background: rgb(52,178,172);
+    background: linear-gradient(90deg, rgba(52,178,172,1) 0%, rgba(10,96,96,1) 100%);
+}
+
+.bg-grey-linear {
+    background: rgb(140,140,140);
+    background: linear-gradient(90deg, rgba(140,140,140,1) 0%, rgba(195,201,201,1) 100%);
+}
+
+.border-rounded {
+    border-radius: 2rem;
+}
+
+.border-top-rounded {
+    border-top-left-radius: 2rem;
+    border-top-right-radius: 2rem;
+}
+
+.border-left {
+    border-left: 60px solid #fff;
+}
+
+.form-group-textarea textarea {
+    padding: 1.25rem;
+    border: none;
+    resize: none;
+}
+
+.html-input {
+    background-color: #ffffff;
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: auto;
+    white-space: pre;
+    box-shadow: 0 1px 1px rgb(22, 22, 22);
+    outline: none;
+    padding: 0.4rem;
+    height: 90vh;
+    border-right: 1px solid rgb(140,140,140);
+}
+
+.html-output {
+    background-color: #ffffff;
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: auto;
+    white-space: pre;
+    box-shadow: 0 1px 1px rgb(22, 22, 22);
+    outline: none;
+    padding: 0.4rem;
+    height: 90vh;
+    border-left: 1px solid rgb(140,140,140);
+}
+
+.html-buttons button{
+    color: aliceblue!important
+}
+
+    .html-buttons button:hover {
+        color: #343a40 !important;
+        outline: none;
+    }
+
+    .html-buttons button:focus {
+        outline: none!important;
+    }
+
+.modal-header {
+    border-top-left-radius: 2rem !important;
+    border-top-right-radius: 2rem !important;
+    background: linear-gradient(90deg, rgba(52,178,172,1) 0%, rgba(10,96,96,1) 100%);
+}
+
+select#versions {
+    background-color: transparent;
+    border: none;
+    color: #fff;
+    cursor:pointer;
+}
+
+    select#versions:hover {
+        color: #343a40 !important;
+        outline: none;
+    }
+
+
+textarea:focus, input:focus, button:focus, select:focus {
+    outline: none;
+}
+
+button, input, textarea,select {
+    border: none;
+    outline: none;
+}
+
+
+
+
+

@@ -1,0 +1,44 @@
+﻿@{
+    this.ViewData["Title"] = "Preview";
+}
+
+@model HTMLPreviewer.Models.HTMLInputModel
+
+<section class="page-section" id="html">
+    <div class="container pt-5">
+        <div class="text-center mb-5">
+            <h2 class="text-uppercase text-white">Preview your HTML</h2>
+        </div>
+        <div class="col-12 bg-green-linear border-top-rounded">
+            <div class="html-buttons">
+                <button id="run" class="btn text-center" type="submit">Run</button>
+                <button class="btn text-center" type="submit" form="htmlForm">Save</button>
+                <span asp-validation-for="Content" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row align-items-stretch mb-5">
+            <div class="col-md-6 pr-0">
+                <form method="post" id="htmlForm">
+                    <div class="form-group form-group-textarea">
+                        <textarea asp-for="Content" class="html-input" placeholder="Enter your HTML and click Run"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-6 pl-0">
+                <iframe sandbox="" srcdoc="" class="html-output" frameBorder="0">
+                </iframe>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("button#run").click(function () {
+                var input = $("textarea.html-input").val();
+                $("iframe.html-output").attr("srcdoc", input);
+            });
+        });
+    </script>
+}
