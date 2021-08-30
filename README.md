@@ -62,5 +62,6 @@ Preview and Save HTML code with shareable URL
 <ol>
   <li> Clone the project </li>
   <li> Use the provided <b>html-previewer-db-script.sql</b> file to create the database with some sample data (copy the script and run it in SSMS18) </li>
+  <li> In <b>appsettings.json</b> change the server name from "." to whatever your server name is </li>  
   <li> Basically that's it, run the project in VS19 and start previewing HTMLs 😊 </li>
 </ol>
